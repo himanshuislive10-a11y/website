@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Portfolio</title>
+    <style>
+        /* Modern Reset & Theme Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #08090c;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-left {
+            position: fixed;
+            top: 20%;
+            left: -150px;
+            width: 350px;
+            height: 350px;
+            background: #00f2fe;
+            filter: blur(180px);
+            opacity: 0.12;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ambient-glow-right {
+            position: fixed;
+            bottom: 10%;
+            right: -150px;
+            width: 350px;
+            height: 350px;
+            background: #00f2fe;
+            filter: blur(180px);
+            opacity: 0.12;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            background: rgba(8, 9, 12, 0.85);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #00f2fe;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #888888;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #00f2fe;
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #00f2fe;
+            box-shadow: 0 0 10px #00f2fe;
+        }
+
+        /* Main Contact Section */
+        .contact-section {
+            flex: 1;
+            padding: 130px 8% 80px;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.08);
+            color: #00f2fe;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .section-header h1 span {
+            color: #00f2fe;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .section-header p {
+            color: #aaaaaa;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        /* Contact Grid Layout */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Contact Info Card */
+        .contact-info-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00f2fe;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-details h4 {
+            font-size: 0.95rem;
+            color: #888888;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-details p, .info-details a {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-details a:hover {
+            color: #00f2fe;
+        }
+
+        /* Form Styling */
+        .contact-form-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #00f2fe;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 850px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 20px 5%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.8rem;
+            }
+
+            .contact-section {
+                padding: 110px 5% 50px;
+            }
+
+            .section-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Glow Backgrounds -->
+    <div class="ambient-glow-left"></div>
+    <div class="ambient-glow-right"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">PORT<span>FOLIO</span></div>
+        <nav>
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Portfolio</title>
+    <style>
+        /* Modern Reset & Theme Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #08090c;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-left {
+            position: fixed;
+            top: 20%;
+            left: -150px;
+            width: 350px;
+            height: 350px;
+            background: #00f2fe;
+            filter: blur(180px);
+            opacity: 0.12;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ambient-glow-right {
+            position: fixed;
+            bottom: 10%;
+            right: -150px;
+            width: 350px;
+            height: 350px;
+            background: #00f2fe;
+            filter: blur(180px);
+            opacity: 0.12;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            background: rgba(8, 9, 12, 0.85);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #00f2fe;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #888888;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #00f2fe;
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #00f2fe;
+            box-shadow: 0 0 10px #00f2fe;
+        }
+
+        /* Main Contact Section */
+        .contact-section {
+            flex: 1;
+            padding: 130px 8% 80px;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.08);
+            color: #00f2fe;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .section-header h1 span {
+            color: #00f2fe;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .section-header p {
+            color: #aaaaaa;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        /* Contact Grid Layout */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Contact Info Card */
+        .contact-info-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00f2fe;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-details h4 {
+            font-size: 0.95rem;
+            color: #888888;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-details p, .info-details a {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-details a:hover {
+            color: #00f2fe;
+        }
+
+        /* Form Styling */
+        .contact-form-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #00f2fe;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 850px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 20px 5%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.8rem;
+            }
+
+            .contact-section {
+                padding: 110px 5% 50px;
+            }
+
+            .section-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Glow Backgrounds -->
+    <div class="ambient-glow-left"></div>
+    <div class="ambient-glow-right"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">PORT<span>FOLIO</span></div>
+        <nav>
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Portfolio</title>
+    <style>
+        /* Modern Reset & Theme Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #08090c;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-left {
+            position: fixed;
+            top: 20%;
+            left: -150px;
+            width: 350px;
+            height: 350px;
+            background: #00f2fe;
+            filter: blur(180px);
+            opacity: 0.12;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ambient-glow-right {
+            position: fixed;
+            bottom: 10%;
+            right: -150px;
+            width: 350px;
+            height: 350px;
+            background: #00f2fe;
+            filter: blur(180px);
+            opacity: 0.12;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            background: rgba(8, 9, 12, 0.85);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #00f2fe;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #888888;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #00f2fe;
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #00f2fe;
+            box-shadow: 0 0 10px #00f2fe;
+        }
+
+        /* Main Contact Section */
+        .contact-section {
+            flex: 1;
+            padding: 130px 8% 80px;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.08);
+            color: #00f2fe;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .section-header h1 span {
+            color: #00f2fe;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .section-header p {
+            color: #aaaaaa;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        /* Contact Grid Layout */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Contact Info Card */
+        .contact-info-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00f2fe;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-details h4 {
+            font-size: 0.95rem;
+            color: #888888;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-details p, .info-details a {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-details a:hover {
+            color: #00f2fe;
+        }
+
+        /* Form Styling */
+        .contact-form-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #00f2fe;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 850px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 20px 5%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.8rem;
+            }
+
+            .contact-section {
+                padding: 110px 5% 50px;
+            }
+
+            .section-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Glow Backgrounds -->
+    <div class="ambient-glow-left"></div>
+    <div class="ambient-glow-right"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">PORT<span>FOLIO</span></div>
+        <nav>
+            <ul>
+                <li><a href="C:\Users\PC\Downloads\VANSH\Index.html">HOME</a></li>
+                <li><a href="C:\Users\PC\Downloads\VANSH\About.html">ABOUT</a></li>
+                <li><a href="C:\Users\PC\Downloads\VANSH\work.html">WORK</a></li>
+                <li><a href="C:\Users\PC\Downloads\VANSH\Contactus.html" class="active">CONTACT US</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Contact Section -->
+    <main class="contact-section">
+        <div class="section-header">
+            <span class="badge">GET IN TOUCH</span>
+            <h1>LET'S WORK <span>TOGETHER</span></h1>
+            <p>Have a video project in mind? Feel free to reach out for editing or collaborations.</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Left Info Card -->
+            <div class="contact-info-card">
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-details">
+                        <h4>Phone</h4>
+                        <a href="https://wa.me/918923547884">+918923547884</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">📸</div>
+                    <div class="info-details">
+                        <h4>Instagram</h4>
+                        <a href="https://www.instagram.com/v4_vansh_32" target="_blank">v4_vansh_32
+</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">⚡</div>
+                    <div class="info-details">
+                        <h4>Availability</h4>
+                        <p>Open for Freelance Projects</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form Card -->
+            <div class="contact-form-card">
+                <form id="whatsappForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Project Type</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Vlog, Reel, YouTube Edit, etc.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Form inputs se data nikalna
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value || 'N/A';
+            const message = document.getElementById('message').value;
+
+            // WhatsApp Message Format
+            const whatsappText = `Hello! New Project Inquiry:\n\n` +
+                                 `*Name:* ${name}\n` +
+                                 `*Email:* ${email}\n` +
+                                 `*Project Type:* ${subject}\n` +
+                                 `*Message:* ${message}`;
+
+            // URL Encode text for WhatsApp Link
+            const encodedText = encodeURIComponent(whatsappText);
+            const whatsappNumber = "918923547884";
+            
+            // Redirect to WhatsApp
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
+        </nav>
+    </header>
+
+    <!-- Main Contact Section -->
+    <main class="contact-section">
+        <div class="section-header">
+            <span class="badge">GET IN TOUCH</span>
+            <h1>LET'S WORK <span>TOGETHER</span></h1>
+            <p>Have a video project in mind? Feel free to reach out for editing or collaborations.</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Left Info Card -->
+            <div class="contact-info-card">
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-details">
+                        <h4>Phone</h4>
+                        <a href="https://wa.me/918923547884">+918923547884</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">📸</div>
+                    <div class="info-details">
+                        <h4>Instagram</h4>
+                        <a href="https://www.instagram.com/v4_vansh_32" target="_blank">v4_vansh_32
+</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">⚡</div>
+                    <div class="info-details">
+                        <h4>Availability</h4>
+                        <p>Open for Freelance Projects</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form Card -->
+            <div class="contact-form-card">
+                <form id="whatsappForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Project Type</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Vlog, Reel, YouTube Edit, etc.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Form inputs se data nikalna
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value || 'N/A';
+            const message = document.getElementById('message').value;
+
+            // WhatsApp Message Format
+            const whatsappText = `Hello! New Project Inquiry:\n\n` +
+                                 `*Name:* ${name}\n` +
+                                 `*Email:* ${email}\n` +
+                                 `*Project Type:* ${subject}\n` +
+                                 `*Message:* ${message}`;
+
+            // URL Encode text for WhatsApp Link
+            const encodedText = encodeURIComponent(whatsappText);
+            const whatsappNumber = "918923547884";
+            
+            // Redirect to WhatsApp
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
+        </nav>
+    </header>
+
+    <!-- Main Contact Section -->
+    <main class="contact-section">
+        <div class="section-header">
+            <span class="badge">GET IN TOUCH</span>
+            <h1>LET'S WORK <span>TOGETHER</span></h1>
+            <p>Have a video project in mind? Feel free to reach out for editing or collaborations.</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Left Info Card -->
+            <div class="contact-info-card">
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-details">
+                        <h4>Phone</h4>
+                        <a href="https://wa.me/918923547884">+918923547884</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">📸</div>
+                    <div class="info-details">
+                        <h4>Instagram</h4>
+                        <a href="https://www.instagram.com/v4_vansh_32" target="_blank">v4_vansh_32
+</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">⚡</div>
+                    <div class="info-details">
+                        <h4>Availability</h4>
+                        <p>Open for Freelance Projects</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form Card -->
+            <div class="contact-form-card">
+                <form id="whatsappForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Project Type</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Vlog, Reel, YouTube Edit, etc.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Form inputs se data nikalna
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value || 'N/A';
+            const message = document.getElementById('message').value;
+
+            // WhatsApp Message Format
+            const whatsappText = `Hello! New Project Inquiry:\n\n` +
+                                 `*Name:* ${name}\n` +
+                                 `*Email:* ${email}\n` +
+                                 `*Project Type:* ${subject}\n` +
+                                 `*Message:* ${message}`;
+
+            // URL Encode text for WhatsApp Link
+            const encodedText = encodeURIComponent(whatsappText);
+            const whatsappNumber = "918923547884";
+            
+            // Redirect to WhatsApp
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
