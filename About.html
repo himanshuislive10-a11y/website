@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Portfolio</title>
+    <style>
+        /* Modern Reset & Root Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #08090c;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Ambient Glow Effects */
+        .ambient-glow-left {
+            position: fixed;
+            top: 40%;
+            left: -120px;
+            width: 350px;
+            height: 350px;
+            background: #00f2fe;
+            filter: blur(180px);
+            opacity: 0.15;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ambient-glow-right {
+            position: fixed;
+            top: 40%;
+            right: -120px;
+            width: 350px;
+            height: 350px;
+            background: #00f2fe;
+            filter: blur(180px);
+            opacity: 0.15;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Glassmorphism Navigation Header */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            background: rgba(8, 9, 12, 0.85);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #00f2fe;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #888888;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #00f2fe;
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #00f2fe;
+            box-shadow: 0 0 10px #00f2fe;
+        }
+
+        /* Centered About Us Section */
+        .about-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 8% 60px;
+            z-index: 2;
+        }
+
+        .about-container {
+            max-width: 800px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Filmora Badge Card */
+        .filmora-box {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: inline-flex;
+        }
+
+        .filmora-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 45px rgba(0, 242, 254, 0.3);
+        }
+
+        .filmora-box img {
+            width: 90px;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.6));
+        }
+
+        /* Main Heading */
+        .about-container h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .about-container h1 span {
+            color: #00f2fe;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Description Paragraph */
+        .about-container p {
+            color: #b0b0b0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .about-container p strong {
+            color: #00f2fe;
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #00f2fe;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: #00f2fe;
+            color: #00f2fe;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 5%;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.8rem;
+            }
+
+            .about-section {
+                padding: 120px 5% 40px;
+            }
+
+            .about-container h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-container p {
+                font-size: 0.98rem;
+            }
+
+            .filmora-box img {
+                width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glow Backgrounds -->
+    <div class="ambient-glow-left"></div>
+    <div class="ambient-glow-right"></div>
+
+    <!-- Glassmorphism Header -->
+    <header>
+        <div class="logo">PORT<span>FOLIO</span></div>
+        <nav>
+            <ul>
+                <li><a href="C:\Users\PC\Downloads\VANSH\Index.html">HOME</a></li>
+                <li><a href="C:\Users\PC\Downloads\VANSH\About.html" class="active">ABOUT</a></li>
+                <li><a href="C:\Users\PC\Downloads\VANSH\work.html">WORK</a></li>
+                <li><a href="C:\Users\PC\Downloads\VANSH\Contactus.html">CONTACT US</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Center About Us Content -->
+    <main class="about-section">
+        <div class="about-container">
+            <!-- Filmora Logo Icon Card -->
+            <div class="filmora-box">
+                <img src="C:\Users\PC\Downloads\VANSH\AF.png" alt="after effects logo">
+            </div>
+
+            <!-- Heading -->
+            <h1>ABOUT <span>ME</span></h1>
+
+            <!-- Description -->
+            <p>
+               Hi! I’m a video editor with over 5 years of hands-on experience in Premiere Pro and After Effects. I help creators and brands craft high-impact videos with smooth motion graphics that keep audiences hooked.
+            </p>
+
+            <!-- Buttons -->
+            <div class="btn-group">
+                <a href="work.html" class="btn btn-primary">View Work</a>
+                <a href="contactus.html" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
