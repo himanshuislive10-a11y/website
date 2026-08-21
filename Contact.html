@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Portfolio</title>
-    <style>
+   <style>
         /* Modern Reset & Theme Styling */
         * {
             margin: 0;
@@ -254,6 +254,7 @@
         }
 
         textarea.form-control {
+            pagesize: vertical;
             resize: vertical;
             min-height: 120px;
         }
@@ -279,16 +280,16 @@
 
         /* Mobile Responsive */
         @media (max-width: 850px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
             header {
-                padding: 20px 5%;
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
             }
 
             nav ul {
                 gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             nav ul li a {
@@ -296,7 +297,11 @@
             }
 
             .contact-section {
-                padding: 110px 5% 50px;
+                padding: 150px 5% 40px; /* हेडर स्पेसिंग फिक्स */
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr; /* मोबाइल पर इंफो और फॉर्म एक के नीचे एक आ जाएंगे */
             }
 
             .section-header h1 {
