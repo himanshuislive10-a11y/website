@@ -110,7 +110,7 @@
 
         /* Main Contact Section - Scroll Fixed */
         .contact-section {
-            padding: 130px 8% 80px;
+            padding: 140px 8% 80px;
             z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
@@ -275,16 +275,16 @@
 
         /* Mobile Responsive */
         @media (max-width: 850px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
             header {
-                padding: 20px 5%;
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
             }
 
             nav ul {
                 gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             nav ul li a {
@@ -292,7 +292,11 @@
             }
 
             .contact-section {
-                padding: 110px 5% 50px;
+                padding: 150px 5% 40px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
 
             .section-header h1 {
