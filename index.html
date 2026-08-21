@@ -186,49 +186,51 @@
             color: var(--primary-glow);
         }
 
-        /* --- Mobile Responsive Fixes --- */
-        @media screen and (max-width: 768px) {
-            header {
-                padding: 15px 5%;
-            }
+   @media screen and (max-width: 768px) {
+    header {
+        padding: 12px 20px;
+        flex-direction: column; 
+    }
 
-            nav ul {
-                gap: 12px;
-            }
+    nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-            nav ul li a {
-                font-size: 0.8rem;
-            }
+    nav ul li a {
+        font-size: 0.85rem;
+    }
 
-            .hero {
-                padding: 0 5%;
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                height: auto;
-                min-height: 100vh;
-                padding-top: 100px; /* ताकि हेडर के पीछे टेक्स्ट न छिपे */
-            }
+    .hero {
+        padding: 0 5%;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: auto;
+        min-height: 100vh;
+        padding-top: 140px;
+    }
 
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
 
-            .hero-content p {
-                font-size: 0.95rem;
-            }
+    .hero-content p {
+        font-size: 0.95rem;
+    }
 
-            .btn-group {
-                justify-content: center;
-                flex-direction: column;
-            }
+    .btn-group {
+        justify-content: center;
+        flex-direction: column;
+    }
 
-            .container, .portfolio-grid {
-                width: 100% !important;
-                flex-direction: column !important;
-                padding: 10px;
-            }
-        }
+    .container, .portfolio-grid {
+        width: 100% !important;
+        flex-direction: column !important;
+        padding: 10px;
+    }
+}
     </style>
 </head>
 <body>
