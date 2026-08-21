@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Portfolio</title>
-   <style>
+ <style>
         /* Modern Reset & Theme Styling */
         * {
             margin: 0;
@@ -16,10 +16,7 @@
         body {
             background-color: #08090c;
             color: #ffffff;
-            min-height: 100vh;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
             position: relative;
         }
 
@@ -111,10 +108,9 @@
             box-shadow: 0 0 10px #00f2fe;
         }
 
-        /* Main Contact Section */
+        /* Main Contact Section - Scroll Fixed */
         .contact-section {
-            flex: 1;
-            padding: 130px 8% 80px;
+            padding: 140px 8% 80px;
             z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
@@ -254,7 +250,6 @@
         }
 
         textarea.form-control {
-            pagesize: vertical;
             resize: vertical;
             min-height: 120px;
         }
@@ -297,11 +292,11 @@
             }
 
             .contact-section {
-                padding: 150px 5% 40px; /* हेडर स्पेसिंग फिक्स */
+                padding: 150px 5% 40px;
             }
 
             .contact-grid {
-                grid-template-columns: 1fr; /* मोबाइल पर इंफो और फॉर्म एक के नीचे एक आ जाएंगे */
+                grid-template-columns: 1fr;
             }
 
             .section-header h1 {
