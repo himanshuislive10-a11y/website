@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Portfolio</title>
-    <style>
+  <style>
         /* Modern Reset & Root Styling */
         * {
             margin: 0;
@@ -221,11 +221,15 @@
         /* Mobile Optimization */
         @media (max-width: 768px) {
             header {
-                padding: 20px 5%;
+                padding: 15px 20px;
+                flex-direction: column; /* मोबाइल पर लोगो और नेविगेशन को ऊपर-नीचे सेट करने के लिए */
+                gap: 10px;
             }
             
             nav ul {
                 gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             nav ul li a {
@@ -233,7 +237,7 @@
             }
 
             .about-section {
-                padding: 120px 5% 40px;
+                padding: 150px 5% 40px; /* हेडर दो लाइन का होने पर ऊपर से ज्यादा स्पेस ताकि टेक्स्ट न छिपे */
             }
 
             .about-container h1 {
@@ -246,6 +250,16 @@
 
             .filmora-box img {
                 width: 70px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
